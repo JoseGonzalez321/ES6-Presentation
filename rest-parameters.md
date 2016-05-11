@@ -1,0 +1,33 @@
+#Rest Parameters
+Handle parameters passed into functions. (In JavaScript, a function takes an infinite args)
+```javascript
+const add = function() {
+  //arguments is NOT an array but an Array-LIKE object, so let's do some dancing first
+  const numbers = Array.prototype.slice.call(arguments);
+  return numbers.reduce((a,b) => a + b);
+}
+
+const sum = add(1,2,3,4,5,6,7); // 28
+console.log(sum);
+
+```
+ES6 - look at this beautiful thing!
+```javascript
+const add = function(...numbers) {
+  return numbers.reduce((a, b) => a + b);
+};
+
+const sum = add(1,2,3,4,5,6,7); // 28
+console.log(sum);
+
+```
+Mix rest + spread operator
+Take in first parameter as multiplier, and multiply any value after that number.
+```javascript
+const multiply = (multiplier, ...numbers) => {
+  return numbers.map(number => number * multiplier);
+}
+
+const multiply10 = multiply(10, 1, 2 ,3 , 4, 5);
+console.log(multiply10);
+```

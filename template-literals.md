@@ -1,0 +1,66 @@
+#Template Literals
+Using double `("")` and single `('')` quotes made easy!  
+
+```javascript
+//es5
+var text = "Free pizza and doing \"nothing\" for one hour rocks!"
+
+//es6
+let text2 = `Free pizza and doing "nothing" for one hour rocks because I'm learning ES6 and don't need to escape "double" quotes anymore!` 
+```
+Sweet string concatenation:
+```javascript
+let name = 'Jose';
+let job = 'Software Dev';
+let company = 'Eikos Partners';
+
+let sentence = name + " works at " + company + " as a " + job;
+
+console.log(sentence);
+```
+Expressions:
+```javascript
+let today = new Date();
+let text = `The time and date is: ${today.toLocaleString()}`;
+
+console.log(text);
+
+//another example:
+const pizzaPrice = 18.99;
+const delivery  =  2.99;
+
+const message = `Brian, your pizza will cost $${ (pizzaPrice + delivery).toFixed(2) }`;
+
+console.log(message);
+```
+Multiline:
+```javscript
+const multi = 'This is a\nmultiline string.\nNow I need to add another sentence requested by our client.\nNow, one more because I am bored.';
+
+console.log(multi); // Works but messy...ew.
+
+//solution
+const multi2 = `This is a
+multiline string. 
+Now I need to add another sentence requested by our client. 
+Now, one more because I am bored.`
+
+console.log(multi2); //cleaner
+```
+Used in Markup (e.g. Angular2 in-line templates)
+```javascript
+const person = {
+  name: 'Jose',
+  job: 'Software Dev'
+};
+
+//cleaner. 
+const Markup = `
+  <div>
+    <h2>${person.name}</h2>
+    <h3>${person.job}</h3>
+  </div>
+`;
+
+console.log(Markup);
+```

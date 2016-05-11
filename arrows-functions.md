@@ -1,0 +1,83 @@
+#Arrow Functions 
+Not a replacement for `function()` but makes code easier to read (and familiar to some of us)\
+```javscript
+//ES5
+const add = function (a, b) {
+  return a + b;
+}
+
+console.log(add(3,2));
+
+//ES6
+const addES6 = (a, b) => {
+  return a + b;
+}
+console.log(addES6(4,2));
+
+//ES 6 -- better yet
+const addES5Better = (a, b) => a + b;
+console.log(addES5Better(4,2));
+
+//parameterless
+const add10 = () => 5 + 5;
+console.log(add10());
+```
+Why so cool? You can use high-order functions
+```javascript
+//No arrows
+const numbers = [1, 2, 3, 4, 5];
+const doubleNumbers = numbers.map(function(number) {
+  return number * 2;
+});
+
+console.log("NO arrows");
+console.log(doubleNumbers);
+
+//with arrows
+//JS, creating an new object from my original object...FTW
+const numbers2 = Object.create(numbers);
+const doubleNumbers2 = numbers2.map(number => number * 2);
+
+console.log("WITH arrows");
+console.log(doubleNumbers2);
+```
+Too simple? Let's square only the even numbers
+```javascript
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+const squared = numbers.filter(number => number % 2 === 0)
+                       .map(number => number * number);
+
+console.log(squared);
+```
+Syntax allows you to make nice and simple operations (a la C#)
+C# guys: 
+* `filter()` same as `where()`. 
+* `map()` same as `select()`
+
+Lexical scope
+```javascript
+const person = {
+  name: 'Jose',
+  sayName: function() {
+    return this.name;
+  }
+}
+
+console.log(person.sayName()); // Jose
+```
+With arrow function, `this` will be lexically scoped. In other words, the scope of the function will be bound based where it was defined. The this will refer to the parent scope...e.g. the window object.
+```javascript
+const person2 = {
+  name: 'Jose',
+  sayName: () => {
+    return this.name;
+  }
+}
+
+console.log(person2.sayName()); //undefined
+```
+JavaScript Scope is a big topic and talk on its own.
+
+**Take away**
+Use arrows whenever you need to preserve the lexical value of `this`

@@ -1,0 +1,95 @@
+#var - let - const
+let/const
+* new identifiers for storing values
+* provide block scope (not hoisted to the top of enclosing scope, e.g function())
+
+##Let
+**Example 1**
+
+Using `Var`
+```javascript
+{
+    var user = 'Jose';
+}
+console.log(user); //Jose
+```
+Using `let`
+```javascript
+//Let
+{
+  let user = "Jose";  
+}
+console.log(user); //ERROR
+```
+**Example 2**
+For loop
+```javascript
+for (var i = 0; i < 10; i ++) {
+    console.log(i); 
+}
+
+console.log(i); // prints out: 10;
+```
+Why? The real JS executing is:
+```javascript
+var i;
+for (i = 0; i < 10; i ++) {
+  console.log(i);
+}
+
+console.log(i);
+```
+Fix: use let keyword
+```javascript
+for (let i = 0; i < 10; i ++) {
+    console.log(i); // prints out: 1, 2, 3...
+}
+console.log(i) // ERROR
+```
+
+##Const
+Same as let except:
+* Once value is defined, it cannot be redefined.
+* read-only
+
+```javascript
+const person = "Jose";
+person = "Not Jose";
+
+console.log(person); // ERROR
+```
+`Const` does **not create** an immutable value. (Immutable is fancy term for an object once created, can not ever, **ever** be changed);
+
+```javascript
+
+//person is an object
+const person = {
+  name: 'Jose'
+};
+
+person.name = 'Not Jose';
+
+console.log(person); //{name: 'Not Jose'}
+```
+**Double U tea eff? How?** Person is still an object. We are just changing one of its properties (e.g. name).
+
+If we try to this, then it will fail:
+```javascript
+//person is an object
+const person = {
+  name: 'Jose'
+};
+
+//trying to assign an int to an object
+person = 42;
+```
+If you want to achieve some immutability in JS, look at `Object.Freeze()` method. Not covered in this presentation.
+
+**When to use let or const or var?**
+
+Suggestions: 
+* start with `const` until you see your value change, change to `let`
+* start with `let` until you don't see your value changed.
+* leave `var` to indicate legacy code (must...resist...urge to refactor!)
+
+(Not getting into details of why. Leaving up to you. My choice: use `const`).
